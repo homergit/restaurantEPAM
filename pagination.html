@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Average" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+  <title>EPAM Progect</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="scss/pagination.css">
+
+
+</head>
+
+<body>
+
+  <section class="table-module">
+    <a href="index.html" class="table-module__comebacker comebacker"> 
+      <i class="comebacker__icon fas fa-arrow-left"></i>
+      <p class="comebacker__text">back to site</p>
+    </a>
+    <h2 class="table-module__title">Product List</h2>
+    <form class="table-module__filter filter">
+      <div class="filter__wrapper">
+        <label for="filterName" class="filter__label">Filter by name</label>
+        <input type="text" class="filter__input" id="filterName" placeholder="Enter name" name="filterName">
+      </div>
+    </form>
+
+    <table class="table-module__table table">
+      <thead class="table__head">
+        <tr class="table__row">
+          <th class="table__column-title">id
+            <a href="#" id="sortId">&#8661;</a>
+          </th>
+          <th class="table__column-title">Name
+            <a href="#" id="sortName">&#8661;</a>
+          </th>
+          <th class="table__column-title">Qty
+            <a href="#" id="sortQty">&#8661;</a>
+          </th>
+          <th class="table__column-title">Availability
+            <a href="#" id="sortAvail">&#8661;</a>
+          </th>
+          <th class="table__column-title">Delete</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody" class="table__main">
+      </tbody>
+    </table>
+    <ul class="table-module__pagination pagination" id="pagination">
+    </ul>
+
+    <div class="table-module__button-group button-group">
+      <a href="#" id="addRow" class="button-group__button btn-info">Add new row</a>
+      <a href="#" id="delRow" class="button-group__button btn-primary">Delete checked rows</a>
+      <a href="#" id="demoData" class="button-group__button btn-success">Demo data</a>
+      <a href="#" id="clearTable" class="button-group__button btn-warning">Clear table</a>
+      <a href="#" id="exportData" class="button-group__button btn-danger">Export table</a>
+    </div>
+
+    <form action="#" id="addRowForm" name="addproductform" class="table-module__add-row add-row">
+      <fieldset class="add-row__fildset">
+        <legend class="add-row__title">Add new row</legend>
+        <div class="add-row__form-item">
+          <label for="pName" class="add-row__form-lable">Product name</label>
+          <input type="text" name="pName" class="add-row__form-input" id="pName" required>
+        </div>
+        <div class="add-row__form-item">
+          <label for="select" class="add-row__form-lable">Selects</label>
+          <select class="add-row__form-input" id="pQty" name="pQty" required>
+            <option class="add-row__form-option">1</option>
+            <option class="add-row__form-option">2</option>
+            <option class="add-row__form-option">3</option>
+            <option class="add-row__form-option">4</option>
+            <option class="add-row__form-option">5</option>
+          </select>
+        </div>
+        <div class="add-row__form-item">
+          <div class="add-row__checkbox">
+            <label class="add-row__form-lable">
+              <input type="checkbox" name="pAvailability" class="add-row__form-input">Is available</label>
+          </div>
+        </div>
+        <button type="submit" id="addToTable" class="add-row__submit">Add data</button>
+      </fieldset>
+    </form>
+  </section>
+
+  <script src="js/pagination.js"></script>
+
+
+
+
+</body>
+
+</html>
