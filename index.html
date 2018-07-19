@@ -8,21 +8,26 @@
 	<title>EPAM Progect</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-	    crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	<link rel="stylesheet" href="scss/style.css">
 </head>
 
 <body>
-	<div id="bookingPopUp" class="booking-popup">
+	<div class="booking-popup" id="bookingPopUp">
 		<div class="booking-popup__wrapper">
-			<form class="booking-popup__form form" id="form" name="form">
-				<button class="form__close" onclick="fadeOut(bookingPopUp)"></button>
+			<form class="booking-popup__form form" id="bookingForm" name="form">
+				<button class="form__close" id="bookingFadeOut" ></button>
 				<h2 class="form__title">Book A Table</h2>
 				<hr class="form__line">
 				<input class="form__item" id="name" name="name" placeholder="Name" type="text">
-				<select class="form__item form__item_width" id="selectId1" onchange="this.size=1; this.blur(); changeTime()" onblur='this.size=1;'
-				    onfocus='this.size=4;'>
+				<select class="form__item form__item_width" id="selectedDate" >
+					<option value="0">Select the date</option>
+					<option value="1">today</option>
+					<option value="2">tomorrow</option>
+				</select> 
+				<select class="form__item form__item_width" id="selectedTime" onchange="this.size=1; this.blur();" onblur='this.size=1;'
+					onfocus='this.size=4;'>
+					<option value="0">Select the time</option>
 					<option value="1">14:00</option>
 					<option value="2">14:15</option>
 					<option value="3">14:30</option>
@@ -67,7 +72,7 @@
 					<input class="table__item" type="radio" name="table" id="table_6" disabled/>
 					<label class="table__label" for="table_6">table 6</label>
 				</div>
-				<input class="form__submit" type="submit" id="submit" onclick="submitBooking()">
+				<input class="form__submit" type="submit" id="bookingSubmit">
 			</form>
 		</div>
 	</div>
@@ -110,11 +115,11 @@
 						<li class="nav__item">
 							<a class="nav__link" href="#menu">Menu</a>
 						</li>
-						<li class="nav__item nav__item-dropdown">
-							<a class="nav__link" href="#">Menu Item</a>
+						<li class="nav__item nav__item-dropdown nav__link_not-active">
+							<a class="nav__link nav__link_not-active" href="">Menu Item</a>
 							<ul class="nav__dropdown dropdown">
 								<li class="dropdown__item">
-									<a href="#" class="dropdown__link">Sub-menu</a>
+									<a href="pagination.html" class="dropdown__link">Pagination</a>
 								</li>
 								<li class="dropdown__item">
 									<a href="#" class="dropdown__link">Sub-menu</a>
@@ -139,7 +144,8 @@
 				<h3 class="home__title">Welcome to</h3>
 				<h2 class="home__subtitle">Steakville Restaurant</h2>
 				<span class="home__text">New Scotland Yard, 8-10 Broadway, Westminster, London SW1H 0BG</span>
-				<a class="home__button" href="#menu">Menu</a><a class="home__scroll-down-href scroll-down scroll-down_animation" href="#about">
+				<a class="home__button" href="#menu">Menu</a>
+				<a class="home__scroll-down-href scroll-down scroll-down_animation" href="#about">
 				<!-- <div class="scroll-down__wrapper">
 					<svg class="scroll-down__arrows" width="20" height="19" viewBox="0 0 20 19" xmlns="http://www.w3.org/2000/svg">
 						<path d="M20,1.6c0,0.2-0.1,0.3-0.2,0.5l-9.3,9.2c-0.1,0.1-0.3,0.2-0.5,0.2s-0.3-0.1-0.5-0.2L0.2,2.1
@@ -179,7 +185,7 @@
 					<div class="menu__item">
 						<img class="menu__image" src="img/menu/menu-1.png">
 						<div class="menu__caption">
-							<span class="menu__name">Poblano Queso Spinach Dip</span>
+							<span class="menu__name">Poblano Queso</span>
 							<span class="menu__desc">Creamy queso is infused with spicy Poblano peppers.</span>
 							<span class="menu__price">$14.99</span>
 						</div>
@@ -187,7 +193,7 @@
 					<div class="menu__item">
 						<img class="menu__image" src="img/menu/menu-2.png">
 						<div class="menu__caption">
-							<span class="menu__name">Grilled Filet Mignon</span>
+							<span class="menu__name">Grilled Filet</span>
 							<span class="menu__desc">The most tender of all steaks!</span>
 							<span class="menu__price">$52.99</span>
 						</div>
@@ -195,7 +201,7 @@
 					<div class="menu__item">
 						<img class="menu__image" src="img/menu/menu-3.png">
 						<div class="menu__caption">
-							<span class="menu__name">Grilled Cedar Plank Salmon</span>
+							<span class="menu__name">Grilled Cedar Salmon</span>
 							<span class="menu__desc">A fresh filet of North Atlantic salmon is rubbed...</span>
 							<span class="menu__price">$42.99</span>
 						</div>
@@ -211,7 +217,7 @@
 					<div class="menu__item">
 						<img class="menu__image" src="img/menu/menu-5.png">
 						<div class="menu__caption">
-							<span class="menu__name">Boneless Buffalo Wings</span>
+							<span class="menu__name">Boneless Buffalo Wis</span>
 							<span class="menu__desc">These wings are legendary!</span>
 							<span class="menu__price">$32.99</span>
 						</div>
@@ -219,7 +225,7 @@
 					<div class="menu__item">
 						<img class="menu__image" src="img/menu/menu-6.png">
 						<div class="menu__caption">
-							<span class="menu__name">Boneless Buffalo Wings</span>
+							<span class="menu__name">Boneless Buffalo Wis</span>
 							<span class="menu__desc">These wings are legendary!</span>
 							<span class="menu__price">$32.99</span>
 						</div>
@@ -227,7 +233,7 @@
 					<div class="menu__item">
 						<img class="menu__image" src="img/menu/menu-7.png">
 						<div class="menu__caption">
-							<span class="menu__name">Poblano Queso Spinach Dip</span>
+							<span class="menu__name">Poblano Queso Dip</span>
 							<span class="menu__desc">Creamy queso is infused with spicy Poblano peppers.</span>
 							<span class="menu__price">$14.99</span>
 						</div>
@@ -243,7 +249,7 @@
 					<div class="menu__item">
 						<img class="menu__image" src="img/menu/menu-9.png">
 						<div class="menu__caption">
-							<span class="menu__name">Grilled Cedar Plank Salmon</span>
+							<span class="menu__name">Grilled Cedar Salmon</span>
 							<span class="menu__desc">A fresh filet of North Atlantic salmon is rubbed...</span>
 							<span class="menu__price">$42.99</span>
 						</div>
@@ -289,7 +295,7 @@
 				<h3 class="stuff__title">Our Staff</h3>
 				<h2 class="stuff__subtitle">Meet Our Chefs</h2>
 				<div class="staff__person-group">
-					<div class="staff__person">
+					<div class="staff__person staff__person_hover">
 						<img class="staff__image" src="img/staff/staff-1.png">
 						<span class="staff__name">James T. Kirk</span>
 						<span class="staff__position">Captain</span>
@@ -308,7 +314,7 @@
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
 						</p>
 					</div>
-					<div class="staff__person">
+					<div class="staff__person staff__person_hover">
 						<img class="staff__image" src="img/staff/staff-2.png">
 						<span class="staff__name">Leonard McCoy</span>
 						<span class="staff__position">Doctor, Not A...</span>
@@ -327,7 +333,7 @@
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
 						</p>
 					</div>
-					<div class="staff__person">
+					<div class="staff__person staff__person_hover">
 						<img class="staff__image" src="img/staff/staff-3.png">
 						<span class="staff__name">Hikaru Sulu</span>
 						<span class="staff__position">Pilot</span>
@@ -353,14 +359,14 @@
 		<section class="reservation" id="reservation">
 			<div class="reservation__wrapper">
 				<h3 class="reservation__title">Reservation</h3>
-				<h2 class="reservation__subtitle">Book A Table</h2>
+				<h2 class="reservation__subtitle" >Book A Table</h2>
 				<div class="reservation__arrow"></div>
 				<p class="reservation__text">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
 					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 				</p>
-				<a class="reservation__button" id="popup" onclick="fadeIn(bookingPopUp)">Book A Table</a>
+				<a class="reservation__button" id="bookingFadeIn">Book A Table</a>
 			</div>
 		</section>
 
@@ -495,8 +501,6 @@
 	</main>
 
 	<footer class="footer">
-		<button class="footer__register">sign up</button>
-		<button class="footer__login">sign in</button>
 		<form action="javascript:void();" onsubmit="if(this.t1.value!='')parent.findString(this.t1.value);return(false);">
 			<input type="text" id="t1" name="t1" value="text" size="20">
 			<input type="submit" name="b1" value="Find">
@@ -511,7 +515,6 @@
 	<script src="js/booking.js"></script>
 	<script src="js/burger.js"></script>
 	<script src="js/date.js"></script>
-	<script src="js/pagination.js"></script>
 	<script src="js/popup.js"></script>
 	<script src="js/search.js"></script>
 	<script src="js/slider.js"></script>

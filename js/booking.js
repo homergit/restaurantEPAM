@@ -1,221 +1,172 @@
+const advancedTime = {
+  today: {
+    '14:00': ['table_1', 'table_3', 'table_4'],
+    '14:15': ['table_1', 'table_3', 'table_4'],
+    '14:30': ['table_1', 'table_3', 'table_4'],
+    '14:45': ['table_1', 'table_4'],
+    '15:00': ['table_2', 'table_4'],
+    '15:15': ['table_2', 'table_4'],
+    '15:30': ['table_2', 'table_4'],
+    '15:45': ['table_2', 'table_4'],
+    '16:00': ['table_2', 'table_4'],
+    '16:15': ['table_3', 'table_4'],
+    '16:30': ['table_3', 'table_4'],
+    '16:45': ['table_1', 'table_6', 'table_4'],
+    '17:00': ['table_1', 'table_6', 'table_4'],
+    '17:15': ['table_1', 'table_6', 'table_4'],
+    '17:30': ['table_1', 'table_6', 'table_4'],
+    '17:45': ['table_1', 'table_4'],
+    '18:00': ['table_1', 'table_4'],
+    '18:15': ['table_1', 'table_4'],
+    '18:30': ['table_3', 'table_4'],
+    '18:45': ['table_3', 'table_4'],
+    '19:00': ['table_3', 'table_4'],
+    '19:15': ['table_3', 'table_4'],
+    '19:30': ['table_1', 'table_3', 'table_4'],
+    '19:45': ['table_1', 'table_3', 'table_4'],
+    '20:00': ['table_1', 'table_3', 'table_4'],
+    '20:15': ['table_1', 'table_3', 'table_4'],
+    '20:30': ['table_1', 'table_6'],
+    '20:45': ['table_1', 'table_6'],
+    '21:00': ['table_1', 'table_6']
+  },
+  tomorrow: {
+    '14:00': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '14:15': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '14:30': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '14:45': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '15:00': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '15:15': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '15:30': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '15:45': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '16:00': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '16:15': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '16:30': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '16:45': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '17:00': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '17:15': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '17:30': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '17:45': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '18:00': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '18:15': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '18:30': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '18:45': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '19:00': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '19:15': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '19:30': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '19:45': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '20:00': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '20:15': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '20:30': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '20:45': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6'],
+    '21:00': ['table_1', 'table_2', 'table_3', 'table_4', 'table_5', 'table_6']
+  }
+};
 
-var advancedTime = [{
-    "today": [{
-            time: "14:00",
-            available: ['table_1', 'table_3', 'table_4']
-        },
-        {
-            time: "14:15",
-            available: ['table_1', 'table_3', 'table_4']
-        },
-        {
-            time: "14:30",
-            available: ['table_1', 'table_3', 'table_4']
-        },
-        {
-            time: "14:45",
-            available: ['table_1', 'table_4']
-        },
-        {
-            time: "15:00",
-            available: ['table_2', 'table_4']
-        },
-        {
-            time: "15:15",
-            available: ['table_2', 'table_4']
-        },
-        {
-            time: "15:30",
-            available: ['table_2', 'table_4']
-        },
-        {
-            time: "15:45",
-            available: ['table_2', 'table_4']
-        },
-        {
-            time: "16:00",
-            available: ['table_2', 'table_4']
-        },
-        {
-            time: "16:15",
-            available: ['table_3', 'table_4']
-        },
-        {
-            time: "16:30",
-            available: ['table_3', 'table_4']
-        },
-        {
-            time: "16:45",
-            available: ['table_1', 'table_6', 'table_4']
-        },
-        {
-            time: "17:00",
-            available: ['table_1', 'table_6', 'table_4']
-        },
-        {
-            time: "17:15",
-            available: ['table_1', 'table_6', 'table_4']
-        },
-        {
-            time: "17:30",
-            available: ['table_1', 'table_6', 'table_4']
-        },
-        {
-            time: "17:45",
-            available: ['table_1', 'table_4']
-        },
-        {
-            time: "18:00",
-            available: ['table_1', 'table_4']
-        },
-        {
-            time: "18:15",
-            available: ['table_1', 'table_4']
-        },
-        {
-            time: "18:30",
-            available: ['table_3', 'table_4']
-        },
-        {
-            time: "18:45",
-            available: ['table_3', 'table_4']
-        },
-        {
-            time: "19:00",
-            available: ['table_3', 'table_4']
-        },
-        {
-            time: "19:15",
-            available: ['table_3', 'table_4']
-        },
-        {
-            time: "19:30",
-            available: ['table_1', 'table_3', 'table_4']
-        },
-        {
-            time: "19:45",
-            available: ['table_1', 'table_3', 'table_4']
-        },
-        {
-            time: "20:00",
-            available: ['table_1', 'table_3', 'table_4']
-        },
-        {
-            time: "20:15",
-            available: ['table_1', 'table_3', 'table_4']
-        },
-        {
-            time: "20:30",
-            available: ['table_1', 'table_6']
-        },
-        {
-            time: "20:45",
-            available: ['table_1', 'table_6']
-        },
-        {
-            time: "21:00",
-            available: ['table_1', 'table_6']
-        }
-    ],
-    'week': [{
-            time: "19:30",
-            available: true,
-            seats: 40
-        },
-        {
-            time: "20:00",
-            available: true,
-            seats: 50
-        },
-        {
-            time: "20:15",
-            available: false,
-            seats: 0
-        },
-        {
-            time: "20:30",
-            available: false,
-            seats: 0
-        },
-        {
-            time: "20:45",
-            available: false,
-            seats: 0
-        },
-        {
-            time: "21:00",
-            available: false,
-            seats: 0
-        },
-        {
-            time: "21:15",
-            available: true,
-            seats: 100
-        },
-        {
-            time: "21:30",
-            available: true,
-            seats: 150
-        },
-        {
-            time: "21:45",
-            available: false,
-            seats: 0
-        },
-        {
-            time: "22:00",
-            available: false,
-            seats: 0
-        },
-    ]
-}]
-var select, value, text, current;
-function changeDay(){
-}
-function changeTime() {
-    select = document.getElementById("selectId1");
-    value = select.options[select.selectedIndex].value;
-    text = select.options[select.selectedIndex].text;
 
-    var table1 = document.getElementById("table_1");
-    var table2 = document.getElementById("table_2");
-    var table3 = document.getElementById("table_3");
-    var table4 = document.getElementById("table_4");
-    var table5 = document.getElementById("table_5");
-    var table6 = document.getElementById("table_5");
-    value -= 1;
-    var current = advancedTime[0].today[value].available;
-    find(current);
-    function find(array) {
-        table1.disabled = true;
-        table2.disabled = true;
-        table3.disabled = true;
-        table4.disabled = true;
-        table5.disabled = true;
-        table5.disabled = true;
-        for (var i = 0; i < array.length; i++) {
-            document.getElementById(array[i]).disabled = false;
+function tableBooking() {
+  const TABLE_NUMS = 6;
+  const OPEN_TIME = '14:00';
+  const CLOSE_TIME = '21:00';
+  const TIME_MINUTES_DIFF = 15;
+  const CLOSE_TABLES_AFTER_TIME = 8;
+  const CLOSE_TABLES_BEFORE_TIME = 2;
+  const tablesObj = getLocalStorageData('bookingDate') || setAndGetLocalStorage(advancedTime);
+  let currentTime;
+  let currentDate;
 
-        }
+  function setLocalStorageData(data) {
+    const bookingDateObj = JSON.stringify(data);
+    localStorage.setItem('bookingDate', bookingDateObj);
+  }
+
+  function getLocalStorageData(value) {
+    return JSON.parse(localStorage.getItem(value));
+  }
+
+  function setAndGetLocalStorage(objToSet) {
+    setLocalStorageData(objToSet);
+    return getLocalStorageData('bookingDate');
+  }
+
+  function renderTables(tableToDisp) {
+    for (let i = 1; i <= TABLE_NUMS; i += 1) {
+      document.getElementById(`table_${i}`).disabled = true;
     }
-}
-
-function submitBooking(){
-    var select = document.getElementById("selectId1"); 
-    var value = select.options[select.selectedIndex].value;
-    var current = advancedTime[0].today[value].available;
-     var checkedTable =  document.querySelector('input[name="table"]:checked').id;
-     document.querySelector('input[name="table"]:checked').disabled = true;
-        var index = current.indexOf(checkedTable);
-        if (index > -1) {
-            advancedTime[0].today[value].available.splice(index, 1);
-        }
-    value = select.options[select.selectedIndex].value;
-    function add(array) {
-
-        for (var i = 0; i < array.length; i++) {
-            document.getElementById(array[i]).disabled = false;
-
-        }
+    for (let i = 0; i < tableToDisp.length; i += 1) {
+      document.getElementById(tableToDisp[i]).disabled = false;
     }
+  }
+
+  function displayTableOnInput(event) {
+    const timeSelect = event.currentTarget.querySelector('#selectedTime');
+    const dateSelect = event.currentTarget.querySelector('#selectedDate');
+    if (timeSelect.selectedIndex !== 0 &&
+            dateSelect.selectedIndex !== 0) {
+      currentDate = dateSelect[dateSelect.selectedIndex].textContent;
+      currentTime = timeSelect[timeSelect.selectedIndex].textContent;
+      if (tablesObj && tablesObj[currentDate]) {
+        const availableArray = tablesObj[currentDate][currentTime];
+        renderTables(availableArray);
+      }
+    }
+  }
+
+  function bookTimeBeforeAfter(tableData, checkedTableId, beforeNum, afterNum) {
+    let curTime = new Date(0, 0, 1, +currentTime.slice(0, 2), +currentTime.slice(3));
+    while (curTime >= new Date(
+      0, 0, 1, +OPEN_TIME.slice(0, 2),
+      +OPEN_TIME.slice(3)
+    ) && beforeNum + 1) {
+      const timeKey = curTime.getMinutes() >= 10 ?
+        `${curTime.getHours()}:${curTime.getMinutes()}` :
+        `${curTime.getHours()}:0${curTime.getMinutes()}`;
+      const existsTable = tableData[currentDate][timeKey].indexOf(checkedTableId);
+      if (existsTable !== -1) tableData[currentDate][timeKey].splice(existsTable, 1);
+      curTime.setMinutes(curTime.getMinutes() - TIME_MINUTES_DIFF);
+      beforeNum -= 1;
+    }
+    curTime = new Date(
+      0, 0, 1, currentTime.slice(0, 2),
+      currentTime.slice(3)
+    );
+    curTime.setMinutes(curTime.getMinutes() + TIME_MINUTES_DIFF);
+    while (curTime <= new Date(
+      0, 0, 1,
+      +CLOSE_TIME.slice(0, 2), +CLOSE_TIME.slice(3)
+    ) && afterNum) {
+      const timeKey = curTime.getMinutes() >= 10 ?
+        `${curTime.getHours()}:${curTime.getMinutes()}` :
+        `${curTime.getHours()}:0${curTime.getMinutes()}`;
+      const existsTable = tableData[currentDate][timeKey].indexOf(checkedTableId);
+      if (existsTable !== -1) tableData[currentDate][timeKey].splice(existsTable, 1);
+      curTime.setMinutes(curTime.getMinutes() + TIME_MINUTES_DIFF);
+      afterNum -= 1;
+    }
+  }
+
+  function successBookingModal() {
+    document.getElementById('successBooking').style.display = 'block';
+    setTimeout(() => document.getElementById('successBooking').style.display = '', 3000);
+  }
+
+  function reserveTable() {
+    const checkedTable = document.querySelector("input[name='table']:checked");
+    bookTimeBeforeAfter(
+      tablesObj, checkedTable.id,
+      CLOSE_TABLES_BEFORE_TIME, CLOSE_TABLES_AFTER_TIME
+    );
+    setLocalStorageData(tablesObj);
+    // successBookingModal();
+  }
+
+  return {
+    displayTableOnInput,
+    reserveTable
+  };
 }
+
+const handlers = tableBooking();
+
+document.getElementById('bookingForm').addEventListener('change', handlers.displayTableOnInput);
+document.getElementById('bookingSubmit').addEventListener('click', handlers.reserveTable);

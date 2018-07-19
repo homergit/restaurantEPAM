@@ -4,8 +4,6 @@ var tableEditorModule = (function() {
   var addRowBtn       = document.getElementById("addRow");
   var addRowForm      = document.getElementById("addRowForm");
   var clearTableBtn   = document.getElementById("clearTable");
-  var exportTableBtn  = document.getElementById("exportData");
-  var exportTableForm = document.getElementById("exportTableForm");
   var demoDataBtn     = document.getElementById("demoData");
   var delRowsBtn      = document.getElementById("delRow");
   var importDataArea  = document.getElementById("textArea");
@@ -139,13 +137,6 @@ var tableEditorModule = (function() {
     });
   };
 
-  function exportTableData() {
-    exportTableBtn.addEventListener("click", function(e) {
-      e.preventDefault();
-      exportTableForm.classList.toggle("hidden");
-    });
-  };
-
   var currentSortedColumn = "";
 
   function sortColumn(column, button) {
@@ -176,7 +167,6 @@ var tableEditorModule = (function() {
   function init() {
     addRandomContent();
     addNewRow();
-    exportTableData();
     clearTable();
     delRows();
     addDemoData();
