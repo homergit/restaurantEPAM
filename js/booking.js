@@ -63,20 +63,19 @@ const advancedTime = {
   }
 };
 
-
 function tableBooking() {
-  const TABLE_NUMS = 6;
-  const OPEN_TIME = '14:00';
-  const CLOSE_TIME = '21:00';
-  const TIME_MINUTES_DIFF = 15;
-  const CLOSE_TABLES_AFTER_TIME = 8;
-  const CLOSE_TABLES_BEFORE_TIME = 2;
-  const tablesObj = getLocalStorageData('bookingDate') || setAndGetLocalStorage(advancedTime);
-  let currentTime;
-  let currentDate;
+  var TABLE_NUMS = 6;
+  var OPEN_TIME = '14:00';
+  var CLOSE_TIME = '21:00';
+  var TIME_MINUTES_DIFF = 15;
+  var CLOSE_TABLES_AFTER_TIME = 8;
+  var CLOSE_TABLES_BEFORE_TIME = 2;
+  var tablesObj = getLocalStorageData('bookingDate') || setAndGetLocalStorage(advancedTime);
+  var currentTime = void 0;
+  var currentDate = void 0;
 
   function setLocalStorageData(data) {
-    const bookingDateObj = JSON.stringify(data);
+    var bookingDateObj = JSON.stringify(data);
     localStorage.setItem('bookingDate', bookingDateObj);
   }
 
@@ -90,56 +89,42 @@ function tableBooking() {
   }
 
   function renderTables(tableToDisp) {
-    for (let i = 1; i <= TABLE_NUMS; i += 1) {
-      document.getElementById(`table_${i}`).disabled = true;
+    for (var i = 1; i <= TABLE_NUMS; i += 1) {
+      document.getElementById('table_' + i).disabled = true;
     }
-    for (let i = 0; i < tableToDisp.length; i += 1) {
-      document.getElementById(tableToDisp[i]).disabled = false;
+    for (var _i = 0; _i < tableToDisp.length; _i += 1) {
+      document.getElementById(tableToDisp[_i]).disabled = false;
     }
   }
 
   function displayTableOnInput(event) {
-    const timeSelect = event.currentTarget.querySelector('#selectedTime');
-    const dateSelect = event.currentTarget.querySelector('#selectedDate');
-    if (timeSelect.selectedIndex !== 0 &&
-            dateSelect.selectedIndex !== 0) {
+    var timeSelect = event.currentTarget.querySelector('#selectedTime');
+    var dateSelect = event.currentTarget.querySelector('#selectedDate');
+    if (timeSelect.selectedIndex !== 0 && dateSelect.selectedIndex !== 0) {
       currentDate = dateSelect[dateSelect.selectedIndex].textContent;
       currentTime = timeSelect[timeSelect.selectedIndex].textContent;
       if (tablesObj && tablesObj[currentDate]) {
-        const availableArray = tablesObj[currentDate][currentTime];
+        var availableArray = tablesObj[currentDate][currentTime];
         renderTables(availableArray);
       }
     }
   }
 
   function bookTimeBeforeAfter(tableData, checkedTableId, beforeNum, afterNum) {
-    let curTime = new Date(0, 0, 1, +currentTime.slice(0, 2), +currentTime.slice(3));
-    while (curTime >= new Date(
-      0, 0, 1, +OPEN_TIME.slice(0, 2),
-      +OPEN_TIME.slice(3)
-    ) && beforeNum + 1) {
-      const timeKey = curTime.getMinutes() >= 10 ?
-        `${curTime.getHours()}:${curTime.getMinutes()}` :
-        `${curTime.getHours()}:0${curTime.getMinutes()}`;
-      const existsTable = tableData[currentDate][timeKey].indexOf(checkedTableId);
+    var curTime = new Date(0, 0, 1, +currentTime.slice(0, 2), +currentTime.slice(3));
+    while (curTime >= new Date(0, 0, 1, +OPEN_TIME.slice(0, 2), +OPEN_TIME.slice(3)) && beforeNum + 1) {
+      var timeKey = curTime.getMinutes() >= 10 ? curTime.getHours() + ':' + curTime.getMinutes() : curTime.getHours() + ':0' + curTime.getMinutes();
+      var existsTable = tableData[currentDate][timeKey].indexOf(checkedTableId);
       if (existsTable !== -1) tableData[currentDate][timeKey].splice(existsTable, 1);
       curTime.setMinutes(curTime.getMinutes() - TIME_MINUTES_DIFF);
       beforeNum -= 1;
     }
-    curTime = new Date(
-      0, 0, 1, currentTime.slice(0, 2),
-      currentTime.slice(3)
-    );
+    curTime = new Date(0, 0, 1, currentTime.slice(0, 2), currentTime.slice(3));
     curTime.setMinutes(curTime.getMinutes() + TIME_MINUTES_DIFF);
-    while (curTime <= new Date(
-      0, 0, 1,
-      +CLOSE_TIME.slice(0, 2), +CLOSE_TIME.slice(3)
-    ) && afterNum) {
-      const timeKey = curTime.getMinutes() >= 10 ?
-        `${curTime.getHours()}:${curTime.getMinutes()}` :
-        `${curTime.getHours()}:0${curTime.getMinutes()}`;
-      const existsTable = tableData[currentDate][timeKey].indexOf(checkedTableId);
-      if (existsTable !== -1) tableData[currentDate][timeKey].splice(existsTable, 1);
+    while (curTime <= new Date(0, 0, 1, +CLOSE_TIME.slice(0, 2), +CLOSE_TIME.slice(3)) && afterNum) {
+      var _timeKey = curTime.getMinutes() >= 10 ? curTime.getHours() + ':' + curTime.getMinutes() : curTime.getHours() + ':0' + curTime.getMinutes();
+      var _existsTable = tableData[currentDate][_timeKey].indexOf(checkedTableId);
+      if (_existsTable !== -1) tableData[currentDate][_timeKey].splice(_existsTable, 1);
       curTime.setMinutes(curTime.getMinutes() + TIME_MINUTES_DIFF);
       afterNum -= 1;
     }
@@ -147,26 +132,25 @@ function tableBooking() {
 
   function successBookingModal() {
     document.getElementById('successBooking').style.display = 'block';
-    setTimeout(() => document.getElementById('successBooking').style.display = '', 3000);
+    setTimeout(function () {
+      return document.getElementById('successBooking').style.display = '';
+    }, 3000);
   }
 
   function reserveTable() {
-    const checkedTable = document.querySelector("input[name='table']:checked");
-    bookTimeBeforeAfter(
-      tablesObj, checkedTable.id,
-      CLOSE_TABLES_BEFORE_TIME, CLOSE_TABLES_AFTER_TIME
-    );
+    var checkedTable = document.querySelector("input[name='table']:checked");
+    bookTimeBeforeAfter(tablesObj, checkedTable.id, CLOSE_TABLES_BEFORE_TIME, CLOSE_TABLES_AFTER_TIME);
     setLocalStorageData(tablesObj);
     // successBookingModal();
   }
 
   return {
-    displayTableOnInput,
-    reserveTable
+    displayTableOnInput: displayTableOnInput,
+    reserveTable: reserveTable
   };
 }
 
-const handlers = tableBooking();
+var handlers = tableBooking();
 
 document.getElementById('bookingForm').addEventListener('change', handlers.displayTableOnInput);
 document.getElementById('bookingSubmit').addEventListener('click', handlers.reserveTable);

@@ -3,7 +3,6 @@ var bookingFadeOut = document.getElementById("bookingFadeOut");
 var bookingFadeIn = document.getElementById("bookingFadeIn");
 
 function fadeOut(e) {
-  event.preventDefault();
   document.body.style.overflow = 'auto';
   e.style.opacity = 1;
   (function fade() {
@@ -16,7 +15,6 @@ function fadeOut(e) {
 };
 
 function fadeIn(e, display) {
-  event.preventDefault();
   document.body.style.overflow = 'hidden';
   e.style.opacity = 0;
   e.style.display = display || "block";
