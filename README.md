@@ -1,2 +1,2 @@
-# restaurantEPAM
+# restaurant
 Popovich Bohdan (FE)
