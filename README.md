@@ -1,2 +1,2 @@
 # restaurantEPAM
-epam university program Kyiv /  Popovich Bohdan (FE)
+Popovich Bohdan (FE)
